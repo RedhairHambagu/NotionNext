@@ -8,6 +8,7 @@ import { SideBar } from './components/SideBar'
 import JumpToTopButton from './components/JumpToTopButton'
 import BLOG from '@/blog.config'
 import { TopBar } from './components/TopBar'
+import FloatDarkModeButton from './components/FloatDarkModeButton'
 import CONFIG_SIMPLE from './config_simple'
 import { isBrowser, loadExternalResource } from '@/lib/utils'
 import { useGlobal } from '@/lib/global'
@@ -52,13 +53,14 @@ const LayoutBase = props => {
                     {onLoading ? LoadingCover : children}
                 </div>
 
-                <div id='right-sidebar' className="hidden xl:block flex-none sticky top-8 w-96 border-l dark:border-gray-800 pl-12 border-gray-100">
+                <div id='right-sidebar' className="hidden lg:block flex-none sticky top-8 w-86 border-l dark:border-gray-800 pl-12 border-gray-100">
                     <SideBar {...props} />
                 </div>
 
             </div>
 
             <div className='fixed right-4 bottom-4 z-20'>
+                <FloatDarkModeButton />
                 <JumpToTopButton />
             </div>
 
