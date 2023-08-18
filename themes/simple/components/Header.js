@@ -14,8 +14,8 @@ export const Header = (props) => {
   const avatar = siteInfo?.icon || BLOG.AVATAR
 
   return (
-        <header className="text-center justify-between items-center px-6 bg-white h-80 dark:bg-black relative z-10">
-            <div className="float-none inline-block py-12">
+        <header className="text-center justify-between items-center px-6 bg-white h-60 dark:bg-black relative z-10">
+            <div className="float-none inline-block py-8">
                 <Link href='/'>
                     {/* 可使用一张单图作为logo */}
                     <div className='flex space-x-6'>
