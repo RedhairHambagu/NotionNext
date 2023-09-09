@@ -9,7 +9,7 @@ import JumpToTopButton from './components/JumpToTopButton'
 import BLOG from '@/blog.config'
 import { TopBar } from './components/TopBar'
 import FloatDarkModeButton from './components/FloatDarkModeButton'
-import CONFIG_SIMPLE from './config_simple'
+import config from './config'
 import { isBrowser, loadExternalResource } from '@/lib/utils'
 import { useGlobal } from '@/lib/global'
 
@@ -39,7 +39,7 @@ const LayoutBase = props => {
         <div id='theme-simple' className='min-h-screen flex flex-col dark:text-gray-300  bg-white dark:bg-black'>
             <CommonHead meta={meta} />
 
-            {CONFIG_SIMPLE.TOP_BAR && <TopBar {...props} />}
+            {config.TOP_BAR && <TopBar {...props} />}
 
             {/* 顶部LOGO */}
             <Header {...props} />

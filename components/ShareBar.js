@@ -5,7 +5,7 @@ import ShareButtons from './ShareButtons'
 
 const ShareBar = ({ post }) => {
   const router = useRouter()
-  const [justifyContent, setJustifyContent] = useState('start')
+  const [setJustifyContent] = useState('start')
   const shareBarRef = useRef(null)
 
   useEffect(() => {
