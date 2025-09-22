@@ -1,53 +1,30 @@
-import BLOG from '@/blog.config'
-import { useRouter } from 'next/router'
-import React, { useState, useEffect, useRef } from 'react'
-import ShareButtons from './ShareButtons'
+import { siteConfig } from '@/lib/config'
+import dynamic from 'next/dynamic'
 
+const ShareButtons = dynamic(() => import('@/components/ShareButtons'), {
+  ssr: false
+})
+
+/**
+ * 分享栏
+ * @param {} param0
+ * @returns
+ */
 const ShareBar = ({ post }) => {
-  const router = useRouter()
-  const [justifyContent, setJustifyContent] = useState('start')
-  const shareBarRef = useRef(null)
-
-  useEffect(() => {
-    const handleResize = () => {
-      console.log('handleResize')
-      if (shareBarRef.current) {
-        const containerWidth = shareBarRef.current.offsetWidth
-        if (containerWidth < 520) {
-          setJustifyContent('start')
-        } else {
-          setJustifyContent('end')
-        }
-      }
-    }
-
-    handleResize()
-    window.addEventListener('resize', handleResize)
-    return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [shareBarRef])
-
-  if (!JSON.parse(BLOG.POST_SHARE_BAR_ENABLE) || !post || post?.type !== 'Post') {
+  if (
+    !JSON.parse(siteConfig('POST_SHARE_BAR_ENABLE')) ||
+    !post ||
+    post?.type !== 'Post'
+  ) {
     return <></>
   }
 
-  const shareUrl = BLOG.LINK + router.asPath
-
-  return (<div
-          ref={shareBarRef}
-          className="py-1 flex overflow-x-auto"
-          style={{ justifyContent }}
-            >
-        <ShareButtons shareUrl={shareUrl} title={post.title} image={post.pageCover} body={
-            post.title +
-            ' | ' +
-            BLOG.TITLE +
-            ' ' +
-            shareUrl +
-            ' ' +
-            post.summary
-        } />
-    </div>)
+  return (
+    <div className='m-1 overflow-x-auto'>
+      <div className='flex w-full md:justify-end'>
+        <ShareButtons post={post} />
+      </div>
+    </div>
+  )
 }
 export default ShareBar
